@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Sprawlers/notify/issues"
   },
-  "homepage": "https://github.com/Sprawlers/notify#readme"
+  "homepage": "https://github.com/Sprawlers/notify#readme",
+  "dependencies": {
+    "@line/bot-sdk": "^6.8.4",
+    "mongoose": "^5.9.7"
+  }
 }
