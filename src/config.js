@@ -10,5 +10,5 @@ module.exports = {
   line: {
     channelAccessToken: process.env.DEV_CHANNEL_TOKEN,
     channelSecret: process.env.DEV_CHANNEL_SECRET,
-  },
+  }
 }
