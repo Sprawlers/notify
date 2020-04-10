@@ -13,7 +13,7 @@ const client = new line.Client(lineConfig)
 
 const msg = {
     type: 'text',
-    text: new Date(Date.now()).toLocaleString()
+    text: new Date(Date.now()).toDateString()
 }
 
 client.broadcast(msg).catch(e => console.error(e))
