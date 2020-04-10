@@ -13,8 +13,7 @@ const client = new line.Client(lineConfig)
 
 const msg = {
     type: 'text',
-    text: "test notification"
+    text: Date.now()
 }
 
 client.broadcast(msg).catch(e => console.error(e))
-
