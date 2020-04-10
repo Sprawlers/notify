@@ -1,6 +1,7 @@
 const line = require('@line/bot-sdk')
 const config = require('./config')
 const mongoose = require('mongoose')
+const moment = require('moment')
 
 const mongoDB = config.db_host
 const db = mongoose
@@ -13,7 +14,7 @@ const client = new line.Client(lineConfig)
 
 const msg = {
     type: 'text',
-    text: new Date().toLocaleString()
+    text: moment(Date.now()).local().toString()
 }
 
 client.broadcast(msg).catch(e => console.error(e))

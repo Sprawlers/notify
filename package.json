@@ -19,6 +19,7 @@
   "dependencies": {
     "@line/bot-sdk": "^6.8.4",
     "dotenv": "^8.2.0",
+    "moment": "^2.24.0",
     "mongoose": "^5.9.7"
   }
 }
