@@ -11,8 +11,10 @@ const db = mongoose
 const lineConfig = config.line
 const client = new line.Client(lineConfig)
 
-const replyMsg = {
+const msg = {
     type: 'text',
-    text: null
+    text: "test notification"
 }
+
+client.broadcast(msg).catch(e => console.error(e))
 
