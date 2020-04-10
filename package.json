@@ -1,0 +1,19 @@
+{
+  "name": "notify",
+  "version": "1.0.0",
+  "description": "Notifications for ICY",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sprawlers/notify.git"
+  },
+  "author": "Wasu Sonthichai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sprawlers/notify/issues"
+  },
+  "homepage": "https://github.com/Sprawlers/notify#readme"
+}
