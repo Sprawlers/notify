@@ -1,5 +1,5 @@
 // Imports
-const { getHomeworkNotifyString } = require("./controller/functions")
+const { createBubble } = require("./controller/functions")
 const { getAllHomework } = require("./model/functions")
 
 // Packages
@@ -33,10 +33,8 @@ const run = async () => {
     // Get all homework nearing deadline and create a JSON message containing it
     const hw = await getAllHomework()
 
-    const msg = {
-        type: 'text',
-        text: getHomeworkNotifyString(config.phase, hw, phaseDic[config.phase], 'hours')
-    }
+    const msg = createBubble(config.phase, hw, phaseDic[config.phase], 'hours')
+
 
     // Broadcast to all users
     await client.broadcast(msg).catch(e => console.error(e))

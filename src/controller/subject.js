@@ -11,7 +11,7 @@ class Subject {
 
     createFlexSubject() {
         const keys = Object.keys(this.homeworks)
-        const list = keys.map(key => createFlexHomework(key))
+        const list = keys.map(key => this.createFlexHomework(key))
         const flex = [{
             type:   "text",
             text:   this.name.toUpperCase(),
@@ -19,24 +19,25 @@ class Subject {
             color:  "#FFFFFF",
         }];
         flex.push(...list)
+        console.log(flex)
         return flex
     }
 
     createFlexHomework(index) {
         return {
             type:   "box",
-            layout: "basline",
+            layout: "baseline",
             contents: [
                 {
                     type:   "text",
-                    text:   this.homework[index].title,
+                    text:   this.homeworks[index].title,
                     align:  "start",
                     weight: "bold",
                     color:  "#F9AA33",
                 },
                 {
                     type:   "text",
-                    text:   `Due in ${this.homework[index].time}`,
+                    text:   `Due in ${this.homeworks[index].time}`,
                     align:  "end",
                     weight: "bold",
                     color:  "#F9AA33",
