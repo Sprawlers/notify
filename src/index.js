@@ -40,7 +40,12 @@ const run = async () => {
 
     // Broadcast to all users
     client.broadcast(msg).catch(e => console.error(e))
+
+    process.exit(0)
 }
 
 // Call run function with error catching
-run().catch(e => console.error(e))
+run().catch(e => {
+    console.error(e)
+    process.exit(1)
+})
