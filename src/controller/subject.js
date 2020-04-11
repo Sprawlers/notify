@@ -18,7 +18,8 @@ class Subject {
             weight: "bold",
             color:  "#FFFFFF",
         }];
-        return flex.push(list...)
+        flex.push(...list)
+        return flex
     }
 
     createFlexHomework(index) {

@@ -42,10 +42,10 @@ const getHomeworkNotifyString = (phase, arr, timeUntil = 0, timeUnit = "days") =
                 title:  task["title"],
                 time:   convertMillisToDaysAndHours(task["diff"]),
             })
-        return new Subject(subject["title"], list...)
+        return new Subject(subject["title"], ...list)
     }).filter(subject => subject.homeworks)
     var contents = [{ type: "separator" }];
-    subjects.map(subject => contents.append((subject.createFlexSubject())..., { type: "separator" }))
+    subjects.map(subject => contents.append(...(subject.createFlexSubject()), { type: "separator" }))
     return JSON.stringify({
         type:       "flex",
         altText:    "Flex Message",
