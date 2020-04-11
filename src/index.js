@@ -1,6 +1,6 @@
 // Imports
-const {getHomeworkNotifyString} = require("./controller/functions")
-const {getAllHomework} = require("./model/functions")
+const { getHomeworkNotifyString } = require("./controller/functions")
+const { getAllHomework } = require("./model/functions")
 
 // Packages
 const line = require('@line/bot-sdk')

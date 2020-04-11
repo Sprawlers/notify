@@ -1,3 +1,5 @@
+const Subject = require("./subject")
+
 /**
  *
  * Gets a string message of subjects contained in {arr} that are {timeUntil} {timeUnit}
@@ -25,11 +27,9 @@ const getHomeworkNotifyString = (phase, arr, timeUntil = 0, timeUnit = "days") =
 
     // Obtain array of subjects nearing deadline
     const subjects = arr.map(subject => {
-        // Loop through all subjects
-
         // Subject assignments list
+        // Must use parse and stringify in order to make assignments parameter work
         const list = Object
-            // Must use parse and stringify in order to make assignments parameter work
             .keys(JSON.parse(JSON.stringify(subject))["assignments"])
             .map(task => ({
                 // Obtain milliseconds of difference between deadline and now and store it as a new parameter in object clone
@@ -38,24 +38,32 @@ const getHomeworkNotifyString = (phase, arr, timeUntil = 0, timeUnit = "days") =
             }))
             // Filter only subjects withing timeUntil and not overdue
             .filter(task => task["diff"] < timeUntil && task["diff"] > 0)
-            // Format array to string message
-            .map(task => ` - ${task["title"]} ${convertMillisToDaysAndHours(task["diff"])}`)
-            .join("\n")
-        return ({
-            // Message with subject title and list of assignments
-            'message': `> ${subject["title"]}\n${list}`,
-            // Boolean to check if the subject has assignments near the deadline
-            'hasContent': list
-        })
+            .map(task => {
+                title:  task["title"],
+                time:   convertMillisToDaysAndHours(task["diff"]),
+            })
+        return new Subject(subject["title"], list...)
+    }).filter(subject => subject.homeworks)
+    var contents = [{ type: "separator" }];
+    subjects.map(subject => contents.append((subject.createFlexSubject())..., { type: "separator" }))
+    return JSON.stringify({
+        type:       "flex",
+        altText:    "Flex Message",
+        contents:   {
+            type:   "bubble",
+            body:   {
+                type:       "box",
+                layout:     "vertical",
+                spacing:    "md",
+                contents:   contents,
+            },
+            style:  {
+                body:   {
+                    backgroundColor: "#344955"
+                }
+            }
+        }
     })
-        // Remove subjects without tasks nearing deadline
-        .filter(subject => subject["hasContent"])
-        // Get array of messages
-        .map(subject => subject["message"])
-        .join("\n")
-
-    // Adds header to message and returns
-    return ` *(${phase})* \nAssignments nearing deadline:\n${subjects}`
 }
 
 // Time conversion functions

@@ -1,0 +1,80 @@
+{
+  "type": "flex",
+  "altText": "Flex Message",
+  "contents": {
+    "type": "bubble",
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "spacing": "md",
+      "contents": [
+        {
+          "type": "separator"
+        },
+        {
+          "type": "text",
+          "text": "CALCULUS",
+          "weight": "bold",
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "box",
+          "layout": "baseline",
+          "contents": [
+            {
+              "type": "text",
+              "text": "HW5",
+              "align": "start",
+              "weight": "bold",
+              "color": "#F9AA33"
+            },
+            {
+              "type": "text",
+              "text": "Due in 2h",
+              "align": "end",
+              "weight": "bold",
+              "color": "#F9AA33"
+            }
+          ]
+        },
+        {
+          "type": "separator"
+        },
+        {
+          "type": "text",
+          "text": "PHYSICS",
+          "weight": "bold",
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "box",
+          "layout": "baseline",
+          "contents": [
+            {
+              "type": "text",
+              "text": "HW5",
+              "align": "start",
+              "weight": "bold",
+              "color": "#F9AA33"
+            },
+            {
+              "type": "text",
+              "text": "Due in 10h",
+              "align": "end",
+              "weight": "bold",
+              "color": "#F9AA33"
+            }
+          ]
+        },
+        {
+          "type": "separator"
+        }
+      ]
+    },
+    "styles": {
+      "body": {
+        "backgroundColor": "#344955"
+      }
+    }
+  }
+}
