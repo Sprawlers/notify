@@ -20,14 +20,14 @@ const run = async () => {
     /**
      * Define phase dictionary for phase with values stored in hours
      *
-     * 'urgent' = 12 hours
-     * 'warning' = 1 day
-     * 'notify' = 3 days
+     * 'URGENT' = 12 hours
+     * 'WARNING' = 1 day
+     * 'NOTIFY' = 3 days
      */
     const phaseDic = {
-        'urgent': 12,
-        'warning': 24,
-        'notify': 72
+        'URGENT': 12,
+        'WARNING': 24,
+        'NOTIFY': 72
     }
 
     // Get all homework nearing deadline and create a JSON message containing it
