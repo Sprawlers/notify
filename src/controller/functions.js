@@ -24,12 +24,11 @@ const getHomeworkNotifyString = (phase, arr, timeUntil = 0, timeUnit = "days") =
     }
 
     // Obtain array of subjects nearing deadline
-    const subjects = arr.map(subject => (
+    const subjects = arr.map(subject => {
         // Loop through all subjects
-        // Subject title
-        `> ${subject["title"]}\n`
-            // Subject assignments
-        + Object
+
+        // Subject assignments list
+        const list = Object
             // Must use parse and stringify in order to make assignments parameter work
             .keys(JSON.parse(JSON.stringify(subject))["assignments"])
             .map(task => ({
@@ -42,7 +41,18 @@ const getHomeworkNotifyString = (phase, arr, timeUntil = 0, timeUnit = "days") =
             // Format array to string message
             .map(task => ` - ${task["title"]} ${convertMillisToDaysAndHours(task["diff"])}`)
             .join("\n")
-    )).join("\n")
+        return ({
+            // Message with subject title and list of assignments
+            'message': `> ${subject["title"]}\n${list}`,
+            // Boolean to check if the subject has assignments near the deadline
+            'hasContent': list
+        })
+    })
+        // Remove subjects without tasks nearing deadline
+        .filter(subject => subject["hasContent"])
+        // Get array of messages
+        .map(subject => subject["message"])
+        .join("\n")
 
     // Adds header to message and returns
     return ` *(${phase})* \nAssignments nearing deadline:\n${subjects}`
