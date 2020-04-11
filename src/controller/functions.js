@@ -8,17 +8,16 @@
  * @returns {string} String payload containing formatted message
  */
 const getHomeworkNotifyString = (arr, timeUntil = 0, timeUnit = "days") => {
-    // Instantiate variable for storing timeUntil as milliseconds
-    let timeUntilConv = 0
 
+    // Check input time unit
     switch (timeUnit) {
         case 'days':
             // Convert timeUntil to milliseconds
-            timeUntilConv = convertDaysToMillis(timeUntil)
+            timeUntil = convertDaysToMillis(timeUntil)
             break;
         case 'hours':
             // Convert timeUntil to milliseconds
-            timeUntilConv = convertHoursToMillis(timeUntil)
+            timeUntil = convertHoursToMillis(timeUntil)
             break;
     }
 
@@ -36,7 +35,7 @@ const getHomeworkNotifyString = (arr, timeUntil = 0, timeUnit = "days") => {
                 "diff": new Date(subject["title"]["assignments"][task]["deadline"]) - new Date(Date.now())
             }))
             // Filter only subjects withing timeUntil and not overdue
-            .filter(task => task["diff"] < timeUntilConv && task["diff"] > 0)
+            .filter(task => task["diff"] < timeUntil && task["diff"] > 0)
             // Format array to string message
             .map(task => ` - ${task["title"]} ${convertMillisToDaysAndHours(task["diff"])}`)
             .join("\n")
