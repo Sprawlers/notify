@@ -39,7 +39,7 @@ const run = async () => {
     }
 
     // Broadcast to all users
-    client.broadcast(msg).catch(e => console.error(e))
+    await client.broadcast(msg).catch(e => console.error(e))
 }
 
 // Call run function with error catching
