@@ -32,15 +32,14 @@ const run = async () => {
 
     // Get all homework nearing deadline and create a JSON message containing it
     const hw = await getAllHomework()
+
     const msg = {
         type: 'text',
-        text: getHomeworkNotifyString(hw, phaseDic[config.phase], 'hours')
+        text: getHomeworkNotifyString(config.phase, hw, phaseDic[config.phase], 'hours')
     }
 
-    console.log(msg)
-
     // Broadcast to all users
-    // client.broadcast(msg).catch(e => console.error(e))
+    client.broadcast(msg).catch(e => console.error(e))
 }
 
 // Call run function with error catching

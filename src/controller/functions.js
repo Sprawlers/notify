@@ -2,12 +2,14 @@
  *
  * Gets a string message of subjects contained in {arr} that are {timeUntil} {timeUnit}
  *
+ * @param phase Phase of the notification
  * @param arr Array of subject objects
  * @param timeUntil Duration of time before the deadline (Default = 0)
  * @param timeUnit Unit of time to use - select between 'days' or 'hours' (Default = days)
  * @returns {string} String payload containing formatted message
+ *
  */
-const getHomeworkNotifyString = (arr, timeUntil = 0, timeUnit = "days") => {
+const getHomeworkNotifyString = (phase, arr, timeUntil = 0, timeUnit = "days") => {
 
     // Check input time unit
     switch (timeUnit) {
@@ -28,11 +30,12 @@ const getHomeworkNotifyString = (arr, timeUntil = 0, timeUnit = "days") => {
         `> ${subject["title"]}\n`
             // Subject assignments
         + Object
-            .keys(subject["title"]["assignments"])
+            // Must use parse and stringify in order to make assignments parameter work
+            .keys(JSON.parse(JSON.stringify(subject))["assignments"])
             .map(task => ({
                 // Obtain milliseconds of difference between deadline and now and store it as a new parameter in object clone
                 "title": task,
-                "diff": new Date(subject["title"]["assignments"][task]["deadline"]) - new Date(Date.now())
+                "diff": new Date(JSON.parse(JSON.stringify(subject))["assignments"][task]["deadline"]) - new Date(Date.now())
             }))
             // Filter only subjects withing timeUntil and not overdue
             .filter(task => task["diff"] < timeUntil && task["diff"] > 0)
@@ -42,7 +45,7 @@ const getHomeworkNotifyString = (arr, timeUntil = 0, timeUnit = "days") => {
     )).join("\n")
 
     // Adds header to message and returns
-    return `*(WARNING)*\nAssignments nearing deadline:\n${subjects}`
+    return ` *(${phase})* \nAssignments nearing deadline:\n${subjects}`
 }
 
 // Time conversion functions
