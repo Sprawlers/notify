@@ -1,5 +1,6 @@
 // Imports
-const { createBubble } = require("./controller/functions")
+const { createBubble } = require("./controller/bubble")
+const { createText } = require("./controller/text")
 const { getAllHomework } = require("./model/functions")
 
 // Packages
@@ -33,11 +34,12 @@ const run = async () => {
     // Get all homework nearing deadline and create a JSON message containing it
     const hw = await getAllHomework()
 
-    const msg = createBubble(config.phase, hw, phaseDic[config.phase], 'hours')
+    const text = { type: "text", text: createText("annoucement") }
+    const bubble = createBubble(config.phase, hw, phaseDic[config.phase], 'hours')
 
 
     // Broadcast to all users
-    await client.broadcast(msg).catch(e => console.error(e))
+    await client.broadcast([text, bubble]).catch(e => console.error(e))
 }
 
 // Call run function with error catching

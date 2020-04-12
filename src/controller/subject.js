@@ -1,6 +1,9 @@
-// *************************
-// ***** Subject Class *****
-// *************************
+// *********************
+// *** Subject Class ***
+// *********************
+// *** @method constructor          return new Subject object
+// *** @method createFlexSubject    return a flex component of Subject
+// *** @method createFlexHomework   return a flex component of Homwork
 
 class Subject {
 
